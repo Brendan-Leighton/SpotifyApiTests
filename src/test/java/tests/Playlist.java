@@ -14,11 +14,6 @@ import utils.Props;
 
 public class Playlist {
 
-    public String uri_API = "v1/api";
-    public String uri_TOKEN  = "";
-    public String baseURI = "https://api.spotify.com/";
-    public String baseURI_accounts = "https://accounts.spotify.com/api/token";
-
     @Test
     public void createPlaylist() {
 
