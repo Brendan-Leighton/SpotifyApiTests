@@ -9,14 +9,15 @@ import org.testng.annotations.Test;
 import io.restassured.response.Response;
 import io.restassured.RestAssured;
 // MINE
+import utils.Endpoints;
 import utils.Props;
 
 public class Playlist {
 
     public String uri_API = "v1/api";
-    public String uri_TOKEN  = "api/token";
+    public String uri_TOKEN  = "";
     public String baseURI = "https://api.spotify.com/";
-    public String baseURI_accounts = "https://accounts.spotify.com/";
+    public String baseURI_accounts = "https://accounts.spotify.com/api/token";
 
     @Test
     public void createPlaylist() {
@@ -30,7 +31,7 @@ public class Playlist {
         body_userToken.put("client_secret", Props.getClientSecret());
         // get response
         Response res = RestAssured.given().formParams(body_userToken).log().all()
-                .when().post(baseURI_accounts + uri_TOKEN)
+                .when().post(Props.getBaseURI_Accounts() + Endpoints.TOKEN)
                 .then().log().all().extract().response();
         // extract the token that proves we have users' permission
         String access_token = res.path("access_token").toString();
@@ -38,7 +39,7 @@ public class Playlist {
         // GET USERS' SPOTIFY INFO
         // sending access_token
         Response userData = RestAssured.given().auth().oauth2(access_token).log().all()
-                .when().get(baseURI + "v1/me")
+                .when().get(Props.getBaseURI_API() + Endpoints.ME)
                 .then().log().all().extract().response();
         // extracting users' ID
         String userId = userData.path("id");
@@ -52,7 +53,7 @@ public class Playlist {
                 "  \"public\": false\n" +
                 "}")
                 .log().all()
-                .when().post(baseURI + "v1/users/" + userId + "/playlists")
+                .when().post(Props.getBaseURI_API() + Endpoints.USERS + userId + Endpoints.PLAYLISTS)
                 .then().log().all().assertThat().statusCode(201)
                 .extract().response();
     }
