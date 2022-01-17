@@ -25,5 +25,3 @@ hs_err_pid*
 # HIDDEN FOLDER
 /src/test/resources/hidden/
 /target/
-# IntelliJ config
-/.idea/
