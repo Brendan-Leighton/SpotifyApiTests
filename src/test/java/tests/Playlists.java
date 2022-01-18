@@ -1,6 +1,7 @@
 package tests;
 // TEST-NG
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 // REST-ASSURED
 import io.restassured.response.Response;
@@ -11,13 +12,25 @@ import models.Playlist;
 
 public class Playlists {
 
-    @Test
-    public void createPlaylist() {
-        // GET USER DATA
+    private String userId;
+
+    @BeforeTest
+    public void setup() {
+        // GET USER's ID
         // send request
         Response userData = RestResource.get(Endpoints.ME);
         // extracting users' ID
-        String userId = userData.path("id");
+        userId = userData.path("id");
+    }
+
+    //*************************
+    //*************************
+    //      POST TESTS
+    //*************************
+    //*************************
+
+    @Test
+    public void createPlaylist() {
 
         // CREATE THE PLAYLIST
         // create request body
@@ -30,5 +43,16 @@ public class Playlists {
 
         // ASSERT
         Assert.assertEquals(res.getName(), playlist.getName());
+    }
+
+    //*************************
+    //*************************
+    //       GET TESTS
+    //*************************
+    //*************************
+
+    @Test
+    public void getUsersPlaylists() {
+
     }
 }
