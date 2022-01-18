@@ -1,44 +1,34 @@
 package tests;
-// JAVA
-import java.util.HashMap;
-import java.util.Map;
 // TEST-NG
-import org.testng.annotations.BeforeTest;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 // REST-ASSURED
 import io.restassured.response.Response;
-import io.restassured.RestAssured;
 // MINE
 import utils.Endpoints;
-import utils.Props;
-import utils.Tokens;
+import utils.RestResource;
+import models.Playlist;
 
-public class Playlist {
+public class Playlists {
 
     @Test
     public void createPlaylist() {
-
-        String access_token = Tokens.getAccessToken();
-
-        // GET USERS' SPOTIFY INFO
-        // sending access_token
-        Response userData = RestAssured.given().auth().oauth2(access_token).log().all()
-                .when().get(Props.getBaseURI_API() + Endpoints.ME)
-                .then().log().all().extract().response();
+        // GET USER DATA
+        // send request
+        Response userData = RestResource.get(Endpoints.ME);
         // extracting users' ID
         String userId = userData.path("id");
 
         // CREATE THE PLAYLIST
-        // uses access_token and userId from above code
-        RestAssured.given().auth().oauth2(access_token)
-                .body("{\n" +
-                "  \"name\": \"New Playlist\",\n" +
-                "  \"description\": \"New playlist description\",\n" +
-                "  \"public\": false\n" +
-                "}")
-                .log().all()
-                .when().post(Props.getBaseURI_API() + Endpoints.USERS + userId + Endpoints.PLAYLISTS)
-                .then().log().all().assertThat().statusCode(201)
-                .extract().response();
+        // create request body
+        Playlist playlist = new Playlist();
+        playlist.setName("New Playlist " + System.currentTimeMillis());
+        playlist.setDescription("Auto generated");
+        playlist.setPublic(false);
+        // send request
+        Playlist res = RestResource.post(Endpoints.USERS + userId + Endpoints.PLAYLISTS, playlist).as(Playlist.class);
+
+        // ASSERT
+        Assert.assertEquals(res.getName(), playlist.getName());
     }
 }
