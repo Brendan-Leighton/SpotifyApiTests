@@ -1,4 +1,4 @@
-package utils;
+package utils.restResources;
 // JAVA
 import java.util.Map;
 // REST-ASSURED
@@ -10,6 +10,9 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 // MINE
 import models.Playlist;
+import utils.Endpoints;
+import utils.Props;
+import utils.Tokens;
 
 public class RestResource {
 
@@ -70,5 +73,9 @@ public class RestResource {
      */
     public static Response post_Account(String endpoint, Map<String, String> body_userToken) {
         return  reqSpec_Account().formParams(body_userToken).when().post(endpoint).then().spec(resSpec()).extract().response();
+    }
+
+    public static Response delete(String endpoint) {
+        return reqSpec_Api().delete(endpoint).then().spec(resSpec()).extract().response();
     }
 }
