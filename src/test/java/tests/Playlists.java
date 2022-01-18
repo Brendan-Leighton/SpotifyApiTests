@@ -11,25 +11,14 @@ import io.restassured.RestAssured;
 // MINE
 import utils.Endpoints;
 import utils.Props;
+import utils.Tokens;
 
 public class Playlist {
 
     @Test
     public void createPlaylist() {
 
-        // GET USERS' PERMISSION TO ACCESS THEIR SPOTIFY INFO
-        // create requests' body
-        Map<String, String> body_userToken = new HashMap<>();
-        body_userToken.put("grant_type", Props.getGrantType());
-        body_userToken.put("refresh_token", Props.getRefreshToken());
-        body_userToken.put("client_id", Props.getClientId());
-        body_userToken.put("client_secret", Props.getClientSecret());
-        // get response
-        Response res = RestAssured.given().formParams(body_userToken).log().all()
-                .when().post(Props.getBaseURI_Accounts() + Endpoints.TOKEN)
-                .then().log().all().extract().response();
-        // extract the token that proves we have users' permission
-        String access_token = res.path("access_token").toString();
+        String access_token = Tokens.getAccessToken();
 
         // GET USERS' SPOTIFY INFO
         // sending access_token
