@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 // REST-ASSURED
 import io.restassured.response.Response;
+// MINE
+import utils.restResources.RestResource;
 
 /**
  * Manage Tokens for accessing users' Spotify profile information
