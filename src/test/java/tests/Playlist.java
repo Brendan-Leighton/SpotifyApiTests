@@ -40,7 +40,7 @@ public class Playlist {
         String userId = userData.path("id");
 
         // CREATE THE PLAYLIST
-        // uses access_token and userId from previous code
+        // uses access_token and userId from above code
         RestAssured.given().auth().oauth2(access_token)
                 .body("{\n" +
                 "  \"name\": \"New Playlist\",\n" +
