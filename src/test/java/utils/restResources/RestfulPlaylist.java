@@ -1,6 +1,5 @@
 package utils.restResources;
 // JAVA
-
 import java.util.ArrayList;
 import java.util.List;
 // REST-ASSURED
