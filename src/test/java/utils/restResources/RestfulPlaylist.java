@@ -96,8 +96,8 @@ public class RestfulPlaylist {
 
     /**
      * Get all items in a Playlist object, the items are called "tracks"
-     * @param playlistId ID of the playlist in question
-     * @return A Tracks object. Tracks.getItems() will get the array of tracks as List>Object<.
+     * @param playlistId ID of the playlist in question, try <strong>1QOHh3S7UQXDrdr7cSnRR7</strong>
+     * @return A Tracks object. Tracks.getItems() will get the array of tracks as List>Object<. An example of on item: models/item_in_a_Tracks_object.json
      */
     public static Tracks getPlaylistsTracks(String playlistId) {
         // GET TRACKS
@@ -141,6 +141,17 @@ public class RestfulPlaylist {
      */
     public static Playlist createPlaylist(String userId, Playlist playlist) {
         return RestResource.post(Endpoints.USERS + userId + '/' + Endpoints.PLAYLISTS, playlist).as(Playlist.class);
+    }
+
+    /**
+     * Add Tracks/items to an already existing Playlist in Spotify's DB
+     * @param playlistId ID of the Playlist to add Tracks to
+     * @param items A List>String<, Strings are URIs for tracks or episodes on Spotify
+     * @return
+     */
+    public static JSONObject addItemsToPlaylist(String playlistId, List<String> items) {
+        Response res = RestResource.post(Endpoints.PLAYLISTS + '/' + playlistId + '/' + Endpoints.TRACKS, items);
+        return new JSONObject(res);
     }
 
     //*************************

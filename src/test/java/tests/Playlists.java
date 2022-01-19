@@ -1,7 +1,9 @@
 package tests;
 // JAVA
+import java.util.ArrayList;
 import java.util.List;
 // TEST-NG
+import models.Tracks;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
@@ -51,6 +53,27 @@ public class Playlists {
 
         // ASSERT
         Assert.assertEquals(res.getName(), playlist.getName());
+    }
+
+    @Test
+    public void addItemsToPlaylist() {
+        // CREATE PLAYLIST
+//        Playlist res = RestfulPlaylist.createPlaylist(userId, Playlist.generatePlaylist());
+
+//        // CREATE LIST OF ITEMS TO ADD
+//        List<String> items = new ArrayList<>();
+//        items.add("6Q6l4h9LQz0vc4zMbAwyow");
+//
+//        // ADD TRACKS TO PLAYLIST
+//        RestfulPlaylist.addItemsToPlaylist(res.getId(), items);
+
+        // GET TRACKS
+//        Tracks tracks = RestfulPlaylist.getPlaylistsTracks(res.getId());
+
+//        System.out.println("\n\nan item from Tracks: " + tracks.getItems().get(0) + "\n\n");
+
+        // ASSERT
+//        Assert.assertEquals(tracks.getItems().get(0))
     }
 
     //*************************
@@ -112,9 +135,11 @@ public class Playlists {
             Playlist res = RestfulPlaylist.createPlaylist(userId, playlist);
             playlistId = res.getId();
         } else {
-            playlistId = playlists.get(0).getId();
+            playlistId = "1QOHh3S7UQXDrdr7cSnRR7";
+//            playlistId = playlists.get(0).getId();
         }
-        RestfulPlaylist.getPlaylistsTracks(playlistId);
+        Tracks tracks = RestfulPlaylist.getPlaylistsTracks(playlistId);
+
     }
 
     //*************************
