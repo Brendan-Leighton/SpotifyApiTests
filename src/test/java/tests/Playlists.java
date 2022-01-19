@@ -55,7 +55,7 @@ public class Playlists {
         Assert.assertEquals(res.getName(), playlist.getName());
     }
 
-    @Test
+    @Test  // IN PROGRESS
     public void addItemsToPlaylist() {
         // CREATE PLAYLIST
 //        Playlist res = RestfulPlaylist.createPlaylist(userId, Playlist.generatePlaylist());
