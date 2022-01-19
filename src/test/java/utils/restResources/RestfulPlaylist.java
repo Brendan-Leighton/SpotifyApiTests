@@ -12,6 +12,7 @@ import org.json.JSONObject;
 // MINE
 import models.Playlist;
 import utils.Endpoints;
+import utils.JSON;
 
 
 /**
@@ -44,8 +45,11 @@ public class RestfulPlaylist {
      * <br/>  "message": "string"
      * <br/>}
      */
-    public static Response getAllPlaylists_featured() {
-        return RestResource.get("browse/featured-playlists");
+    public static List<Playlist> getAllPlaylists_featured() {
+        String res = RestResource.get("browse/featured-playlists").asString();
+        JSONArray playlists_json = new JSONObject(res).getJSONObject("playlists").getJSONArray("items");
+
+        return JSON.parse_JSONArray_to_ListPlaylists(playlists_json);
     }
 
     /**
