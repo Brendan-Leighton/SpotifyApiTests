@@ -1,11 +1,9 @@
 package tests;
 // JAVA
-import java.util.ArrayList;
 import java.util.List;
 // TEST-NG
 import models.Tracks;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 // REST-ASSURED
@@ -140,6 +138,12 @@ public class Playlists {
         }
         Tracks tracks = RestfulPlaylist.getPlaylistsTracks(playlistId);
 
+    }
+
+    @Test
+    public void getFeaturedPlaylists() {
+        List<Playlist> playlists = RestfulPlaylist.getAllPlaylists_featured();
+        Assert.assertTrue(playlists.size() > 0);
     }
 
     //*************************
