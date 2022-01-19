@@ -2,7 +2,6 @@ package utils.restResources;
 // JAVA
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 // REST-ASSURED
@@ -150,5 +149,30 @@ public class RestfulPlaylist {
      */
     public static Playlist createPlaylist(String userId, Playlist playlist) {
         return RestResource.post(Endpoints.USERS + userId + '/' + Endpoints.PLAYLISTS, playlist).as(Playlist.class);
+    }
+
+    //*************************
+    //*************************
+    //          PUT
+    //*************************
+    //*************************
+
+    public static JSONObject updatePlaylistDetails(String playlistId, Playlist updatedPlaylist) {
+        Response res = RestResource.put(Endpoints.PLAYLISTS + '/' + playlistId, updatedPlaylist);
+
+        if (res.getStatusCode() != 200) {
+            // parse response
+            JSONObject json = new JSONObject(res);
+            return json;
+        } else {
+            return new JSONObject(
+                "{\n" +
+                        "          \"error\": {\n" +
+                        "            \"status\": 200,\n" +
+                        "            \"message\": \"success\"\n" +
+                        "          }\n" +
+                        "        }"
+            );
+        }
     }
 }

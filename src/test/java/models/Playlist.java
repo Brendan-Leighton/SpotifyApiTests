@@ -204,6 +204,14 @@ public class Playlist {
         this.additionalProperties.put(name, value);
     }
 
+    public static Playlist generatePlaylist() {
+        Playlist playlist = new Playlist();
+        playlist.setName("New Playlist " + System.currentTimeMillis());
+        playlist.setDescription("Auto generated");
+        playlist.setPublic(false);
+        return playlist;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

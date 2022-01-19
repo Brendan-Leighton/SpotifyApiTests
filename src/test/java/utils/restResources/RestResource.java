@@ -78,4 +78,14 @@ public class RestResource {
     public static Response delete(String endpoint) {
         return reqSpec_Api().delete(endpoint).then().spec(resSpec()).extract().response();
     }
+
+    /**
+     * Simple POST request to an API URI
+     * @param endpoint one of {@link Endpoints}
+     * @param body the requests' body. The thing you're trying to POST should match one of {@link models}. If creating a playlist, this is the {@link Playlist} object.
+     * @return a Response from a post request with details of the newly posted thing.
+     */
+    public static Response put(String endpoint, Object body) {
+        return  reqSpec_Api().body(body).when().put(endpoint).then().spec(resSpec()).extract().response();
+    }
 }
