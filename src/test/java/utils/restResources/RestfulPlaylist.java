@@ -48,6 +48,11 @@ public class RestfulPlaylist {
         return RestResource.get("browse/featured-playlists");
     }
 
+    /**
+     * Get all Playlists for 1 user.
+     * @param userId ID of the user
+     * @return List of Playlists, included values are; ID, NAME, DESCRIPTION, URI
+     */
     public static List<Playlist> getAllPlaylists_forSingleUser(String userId) {
         // get playlists
         String response = RestResource.get(Endpoints.USERS + userId + '/' + Endpoints.PLAYLISTS).asString();
@@ -89,6 +94,11 @@ public class RestfulPlaylist {
         return RestResource.get(Endpoints.PLAYLISTS + '/' + playlistId).as(Playlist.class);
     }
 
+    /**
+     * Get all items in a Playlist object, the items are called "tracks"
+     * @param playlistId ID of the playlist in question
+     * @return A Tracks object. Tracks.getItems() will get the array of tracks as List>Object<.
+     */
     public static Tracks getPlaylistsTracks(String playlistId) {
         // GET TRACKS
         Tracks tracks = RestResource.get(Endpoints.PLAYLISTS + '/' + playlistId + '/' + Endpoints.TRACKS).as(Tracks.class);
@@ -139,6 +149,18 @@ public class RestfulPlaylist {
     //*************************
     //*************************
 
+    /**
+     * Update the details of a Playlist in the DB
+     * @param playlistId ID of the playlist to update
+     * @param updatedPlaylist A Playlist object reflecting the desired changes.
+     * @return Example:
+     * <br/>{
+     * <br/>_ "error": {
+     * <br/>_ _ "status": 400,
+     * <br/>_ _ "message": "string"
+     * <br/>_ }
+     * <br/>}
+     */
     public static JSONObject updatePlaylistDetails(String playlistId, Playlist updatedPlaylist) {
         Response res = RestResource.put(Endpoints.PLAYLISTS + '/' + playlistId, updatedPlaylist);
 
@@ -149,11 +171,11 @@ public class RestfulPlaylist {
         } else {
             return new JSONObject(
                 "{\n" +
-                        "          \"error\": {\n" +
-                        "            \"status\": 200,\n" +
-                        "            \"message\": \"success\"\n" +
-                        "          }\n" +
-                        "        }"
+                        "  \"error\": {\n" +
+                        "   \"status\": 200,\n" +
+                        "   \"message\": \"success\"\n" +
+                        "  }\n" +
+                        "}"
             );
         }
     }
