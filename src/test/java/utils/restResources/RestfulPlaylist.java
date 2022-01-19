@@ -3,10 +3,10 @@ package utils.restResources;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 // REST-ASSURED
 import io.restassured.response.Response;
 // JSON
+import models.Tracks;
 import org.json.JSONArray;
 import org.json.JSONObject;
 // MINE
@@ -89,27 +89,9 @@ public class RestfulPlaylist {
         return RestResource.get(Endpoints.PLAYLISTS + '/' + playlistId).as(Playlist.class);
     }
 
-    public static List<Map<String, String>> getPlaylistsTracks(String playlistId) {
+    public static Tracks getPlaylistsTracks(String playlistId) {
         // GET TRACKS
-        Response res = RestResource.get(Endpoints.PLAYLISTS + '/' + playlistId + '/' + Endpoints.TRACKS);
-
-        // PARSE RES
-        JSONObject json = new JSONObject(res);
-        JSONArray playlists = json.getJSONArray("items");
-
-        List<Map<String, String>> tracks = new ArrayList<>();
-        if (playlists.isEmpty()) return tracks;
-        // loop tracks, create new Track obj for each and assign to tracks
-//        for (Object playlist : playlists) {
-//            // cast playlist to use JSONObject methods
-//            JSONObject jsObject = (JSONObject) playlist;
-//            // create Playlist object
-//            Map<String, String> newTrack = new HashMap<>();
-//            newTrack.put("id", String.valueOf(jsObject.getString("id")));
-//            newTrack.put("name", jsObject.get("name").toString());
-//            // add to return object
-//            tracks.add(newTrack);
-//        }
+        Tracks tracks = RestResource.get(Endpoints.PLAYLISTS + '/' + playlistId + '/' + Endpoints.TRACKS).as(Tracks.class);
         return tracks;
     }
 
