@@ -1,11 +1,13 @@
 package tests;
 // JAVA
+import java.util.ArrayList;
 import java.util.List;
 // TEST-NG
-import models.Tracks;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+// JSON
+import org.json.JSONObject;
 // REST-ASSURED
 import io.restassured.response.Response;
 // MINE
@@ -56,22 +58,34 @@ public class Playlists {
     @Test  // IN PROGRESS
     public void addItemsToPlaylist() {
         // CREATE PLAYLIST
-//        Playlist res = RestfulPlaylist.createPlaylist(userId, Playlist.generatePlaylist());
+        Playlist res = RestfulPlaylist.createPlaylist(userId, Playlist.generatePlaylist());
 
-//        // CREATE LIST OF ITEMS TO ADD
-//        List<String> items = new ArrayList<>();
-//        items.add("6Q6l4h9LQz0vc4zMbAwyow");
-//
-//        // ADD TRACKS TO PLAYLIST
-//        RestfulPlaylist.addItemsToPlaylist(res.getId(), items);
+        // GET URIs TO ADD TO PLAYLIST
+        // get featured playlists...
+        List<Playlist> featuredPlaylists = RestfulPlaylist.getAllPlaylists_featured();
+        // get ID of the first playlist...
+        String playlistId = featuredPlaylists.get(0).getId();
+        // get the tracks of that playlist...
+        List<JSONObject> tracks = RestfulPlaylist.getPlaylistsTracks(playlistId);
+
+        // CREATE LIST OF ITEMS TO ADD URIs TO
+        List<String> items = new ArrayList<>();
+
+        // ADD URIS FROM tracks TO items
+        for (JSONObject track : tracks) {
+            System.out.println("object in tracksItems: " + track.get("uri"));
+            items.add(track.get("uri").toString());
+        }
+
+        // ADD TRACKS TO PLAYLIST
+        RestfulPlaylist.addItemsToPlaylist(res.getId(), items);
 
         // GET TRACKS
-//        Tracks tracks = RestfulPlaylist.getPlaylistsTracks(res.getId());
-
-//        System.out.println("\n\nan item from Tracks: " + tracks.getItems().get(0) + "\n\n");
+        List<JSONObject> updatedTracks = RestfulPlaylist.getPlaylistsTracks(res.getId());
 
         // ASSERT
-//        Assert.assertEquals(tracks.getItems().get(0))
+        Assert.assertTrue(updatedTracks.size() > 0);
+        Assert.assertEquals(updatedTracks.size(), tracks.size());
     }
 
     //*************************
@@ -136,8 +150,7 @@ public class Playlists {
             playlistId = "1QOHh3S7UQXDrdr7cSnRR7";
 //            playlistId = playlists.get(0).getId();
         }
-        Tracks tracks = RestfulPlaylist.getPlaylistsTracks(playlistId);
-
+        List<JSONObject> tracks = RestfulPlaylist.getPlaylistsTracks(playlistId);
     }
 
     @Test
