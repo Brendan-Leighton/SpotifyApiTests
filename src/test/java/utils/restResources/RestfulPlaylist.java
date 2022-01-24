@@ -5,7 +5,6 @@ import java.util.List;
 // REST-ASSURED
 import io.restassured.response.Response;
 // JSON
-import models.Tracks;
 import org.json.JSONArray;
 import org.json.JSONObject;
 // MINE
@@ -102,9 +101,23 @@ public class RestfulPlaylist {
      * @param playlistId ID of the playlist in question, try <strong>1QOHh3S7UQXDrdr7cSnRR7</strong>
      * @return A Tracks object. Tracks.getItems() will get the array of tracks as List>Object<. An example of on item: models/item_in_a_Tracks_object.json
      */
-    public static Tracks getPlaylistsTracks(String playlistId) {
+    public static List<JSONObject> getPlaylistsTracks(String playlistId) {
         // GET TRACKS
-        Tracks tracks = RestResource.get(Endpoints.PLAYLISTS + '/' + playlistId + '/' + Endpoints.TRACKS).as(Tracks.class);
+        String res = RestResource.get(Endpoints.PLAYLISTS + '/' + playlistId + '/' + Endpoints.TRACKS).asString();
+
+        // CONVERT TO SOMETHING USEFUL
+        // get the actual TRACKS object array
+        JSONObject json = new JSONObject(res);
+        JSONArray items = json.getJSONArray("items");
+        // useful return object
+        List<JSONObject> tracks = new ArrayList<>();
+        // iterate TRACKS array and move to useful return object
+        for (Object item : items) {
+            JSONObject jsItem = (JSONObject) item;
+            JSONObject track = (JSONObject) jsItem.get("track");
+            tracks.add(track);
+        }
+        // return the useful list of objects
         return tracks;
     }
 
@@ -152,9 +165,8 @@ public class RestfulPlaylist {
      * @param items A List>String<, Strings are URIs for tracks or episodes on Spotify
      * @return
      */
-    public static JSONObject addItemsToPlaylist(String playlistId, List<String> items) {
-        Response res = RestResource.post(Endpoints.PLAYLISTS + '/' + playlistId + '/' + Endpoints.TRACKS, items);
-        return new JSONObject(res);
+    public static void addItemsToPlaylist(String playlistId, List<String> items) {
+        RestResource.post(Endpoints.PLAYLISTS + '/' + playlistId + '/' + Endpoints.TRACKS, items);
     }
 
     //*************************
