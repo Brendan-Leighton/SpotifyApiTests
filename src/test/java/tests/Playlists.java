@@ -165,12 +165,20 @@ public class Playlists {
         Assert.assertEquals(playlist.getPublic(), playlist_gotById.getPublic());
     }
 
+    /*
+
+        TEST : GET PLAYLISTS' ITEMS
+        - not empty playlist
+        - empty playlist
+
+     */
+
     /**
-     * GET the items from a playlist.
+     * GET items from a playlist.
      *
      * "items" could be songs, podcasts, etc.
      */
-    @Test  // work in progress
+    @Test
     public void getPlaylistItems_NotEmpty() {
         // CREATE PLAYLIST
         // create request body
