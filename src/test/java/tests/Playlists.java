@@ -39,6 +39,25 @@ public class Playlists {
     //*************************
     //*************************
 
+    /*
+        TEST : CREATE PLAYLIST
+
+        Requirements
+            1. userId
+            2. name - String
+        Optional
+            1. public - boolean
+            2. collaborative - boolean
+            3. description - String
+
+        Tests
+            1. include name
+            2. exclude name
+            3. include name of empty String ""
+            4. no userId
+            5. invalid userId
+
+     */
     @Test
     public void createPlaylist() {
 
