@@ -55,8 +55,18 @@ public class Playlists {
         Assert.assertEquals(res.getName(), playlist.getName());
     }
 
-    @Test  // IN PROGRESS
-    public void addItemsToPlaylist() {
+    /*
+        TEST : ADD ITEMS TO A PLAYLIST
+        1 track added?
+        multiple tracks added?
+        no tracks added?
+        Max tracks added?
+            - 99
+            - 100
+            - 101
+     */
+    @Test
+    public void addMultipleItemsToPlaylist() {
         // CREATE PLAYLIST
         Playlist res = RestfulPlaylist.createPlaylist(userId, Playlist.generatePlaylist());
 
@@ -69,23 +79,30 @@ public class Playlists {
         List<JSONObject> tracks = RestfulPlaylist.getPlaylistsTracks(playlistId);
 
         // CREATE LIST OF ITEMS TO ADD URIs TO
-        List<String> items = new ArrayList<>();
+        List<String> itemsToAdd = new ArrayList<>();
 
-        // ADD URIS FROM tracks TO items
+        // ADD URIS FROM tracks TO itemsToAdd
         for (JSONObject track : tracks) {
             System.out.println("object in tracksItems: " + track.get("uri"));
-            items.add(track.get("uri").toString());
+            itemsToAdd.add(track.get("uri").toString());
         }
 
         // ADD TRACKS TO PLAYLIST
-        RestfulPlaylist.addItemsToPlaylist(res.getId(), items);
+        RestfulPlaylist.addItemsToPlaylist(res.getId(), itemsToAdd);
 
         // GET TRACKS
         List<JSONObject> updatedTracks = RestfulPlaylist.getPlaylistsTracks(res.getId());
 
         // ASSERT
+        // updateTracks has something
         Assert.assertTrue(updatedTracks.size() > 0);
+        // updatedTracks has the same amount of tracks as the list of tracks to add
         Assert.assertEquals(updatedTracks.size(), tracks.size());
+        for (int i = 0; i < updatedTracks.size(); i++) {
+            System.out.println("updateTracks.get(i) " + updatedTracks.get(i));
+            String uri = updatedTracks.get(i).get("uri").toString();
+            Assert.assertEquals(uri, itemsToAdd.get(i));
+        }
     }
 
     //*************************
