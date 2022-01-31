@@ -171,25 +171,34 @@ public class Playlists {
      * "items" could be songs, podcasts, etc.
      */
     @Test  // work in progress
-    public void getPlaylistItems() {
-        List<Playlist> playlists = RestfulPlaylist.getAllPlaylists_forSingleUser(this.userId);
+    public void getPlaylistItems_NotEmpty() {
+        // CREATE PLAYLIST
+        // create request body
+        Playlist playlist = new Playlist();
+        playlist.setName("Get me by my ID! " + System.currentTimeMillis());
+        playlist.setDescription("Made to be gotten");
+        playlist.setPublic(false);
+        // send request
+        Playlist res = RestfulPlaylist.createPlaylist(userId, playlist);
+        // get id
+        String playlistId = res.getId();
 
-        String playlistId;
-        if (playlists.size() == 0) {
-            // CREATE PLAYLIST
-            // create request body
-            Playlist playlist = new Playlist();
-            playlist.setName("Get me by my ID! " + System.currentTimeMillis());
-            playlist.setDescription("Made to be gotten");
-            playlist.setPublic(false);
-            // send request
-            Playlist res = RestfulPlaylist.createPlaylist(userId, playlist);
-            playlistId = res.getId();
-        } else {
-            playlistId = "1QOHh3S7UQXDrdr7cSnRR7";
-//            playlistId = playlists.get(0).getId();
-        }
-        List<JSONObject> tracks = RestfulPlaylist.getPlaylistsTracks(playlistId);
+        // ADD TRACK
+        List<Playlist> featuredPlaylists = RestfulPlaylist.getAllPlaylists_featured();
+        JSONObject trackThatWasAdded = RestfulPlaylist.getPlaylistsTracks(featuredPlaylists.get(0).getId()).get(0);
+        String songUri = trackThatWasAdded.get("uri").toString();
+        List<String> newItems = new ArrayList<>();
+        newItems.add(songUri);
+        RestfulPlaylist.addItemsToPlaylist(playlistId, newItems);
+
+        // TEST FUNCTION
+        List<JSONObject> tracksToCheck = RestfulPlaylist.getPlaylistsTracks(playlistId);
+
+        // ASSERT
+        // has an item
+        Assert.assertEquals(tracksToCheck.size(), 1);
+        // has correct item
+        Assert.assertEquals(tracksToCheck.get(0).get("name"), trackThatWasAdded.get("name"));
     }
 
     @Test
