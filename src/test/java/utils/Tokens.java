@@ -21,6 +21,7 @@ public class Tokens {
      * @return An access token as a String
      */
     public static String getAccessToken() {
+        // if token is not set OR tokens' timer is up
         if (access_token == null || Instant.now().isAfter(token_lifespan)) {
             // refresh token
             Response res = refreshAccessToken();
