@@ -61,11 +61,11 @@ public class Playlists {
         Playlist res = RestfulPlaylist.createPlaylist(userId, Playlist.generatePlaylist());
 
         // GET URIs TO ADD TO PLAYLIST
-        // get featured playlists...
+        // get featured playlists
         List<Playlist> featuredPlaylists = RestfulPlaylist.getAllPlaylists_featured();
-        // get ID of the first playlist...
+        // get ID of the first playlist
         String playlistId = featuredPlaylists.get(0).getId();
-        // get the tracks of that playlist...
+        // get the tracks of that playlist
         List<JSONObject> tracks = RestfulPlaylist.getPlaylistsTracks(playlistId);
 
         // CREATE LIST OF ITEMS TO ADD URIs TO
@@ -97,7 +97,7 @@ public class Playlists {
     /**
      * GET all playlists belonging to a user
      */
-    @Test
+    @Test  // in progress
     public void getUsersPlaylists() {
         RestfulPlaylist.getAllPlaylists_forSingleUser(this.userId);
     }
@@ -131,7 +131,7 @@ public class Playlists {
      *
      * "items" could be songs, podcasts, etc.
      */
-    @Test
+    @Test  // work in progress
     public void getPlaylistItems() {
         List<Playlist> playlists = RestfulPlaylist.getAllPlaylists_forSingleUser(this.userId);
 
@@ -252,3 +252,4 @@ public class Playlists {
         Assert.assertEquals(resultingPlaylist.getPublic(), playlist1.getPublic());
     }
 }
+
