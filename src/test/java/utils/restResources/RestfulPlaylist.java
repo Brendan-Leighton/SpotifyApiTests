@@ -142,6 +142,14 @@ public class RestfulPlaylist {
         RestResource.delete(Endpoints.PLAYLISTS + '/' + playlistId + "/followers");
     }
 
+    public static void deleteAllPlaylists_forSingleUser(String userId) {
+        List<Playlist> playlists = RestfulPlaylist.getAllPlaylists_forSingleUser(userId);
+
+        for (Playlist playlist : playlists) {
+            RestfulPlaylist.deletePlaylist_byId(playlist.getId());
+        }
+    }
+
     //*************************
     //*************************
     //          POST
