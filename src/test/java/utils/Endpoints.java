@@ -6,7 +6,7 @@ package utils;
  * <ul>
  *      <li>TOKEN = "token";</li>
  *      <li>ME = "me";</li>
- *      <li>PLAYLISTS = "/playlists";</li>
+ *      <li>PLAYLISTS = "playlists";</li>
  *      <li>USERS = "users/";</li>
  * </ul>
  */
