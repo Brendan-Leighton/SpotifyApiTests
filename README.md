@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <h1 align="center">SpotifyApiTests</h1>
+  <h1 align="center">Spotify API Tests</h1>
 </p>
 Automated tests to test Spotifys' API
 
@@ -38,6 +38,6 @@ This project contains automated tests for testing Spotify's RESTful API. This pr
 <!-- CONTACT -->
 # Contact
 
-* [Email](BR3NDAN.L8N@gmail.com)
+* Email: BR3NDAN.L8N@gmail.com
 * [LinkedIn](https://www.linkedin.com/in/brendan-leighton-ab5944113/)
 * [Portfolio](BrendanLeighton.com)
