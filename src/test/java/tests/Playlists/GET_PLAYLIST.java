@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import models.Playlist;
 import utils.restResources.RestfulPlaylist;
 
-public class GET_PlaylistById extends Playlists{
+public class GET_PLAYLIST extends Playlists{
     /**
      * GET one playlist by its ID
      */

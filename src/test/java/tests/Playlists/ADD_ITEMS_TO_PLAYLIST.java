@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import utils.restResources.RestfulPlaylist;
 import models.Playlist;
 
-public class AddItemsToPlaylist extends Playlists {
+public class ADD_ITEMS_TO_PLAYLIST extends Playlists {
     /*
         TEST : ADD ITEMS TO A PLAYLIST
         1 track added?

@@ -16,7 +16,7 @@ import java.util.List;
  *    - not empty playlist
  *    - empty playlist
  */
-public class GET_PlaylistsItems extends Playlists{
+public class GET_PLAYLIST_ITEMS extends Playlists{
 
     /**
      * GET items from a non-empty playlist

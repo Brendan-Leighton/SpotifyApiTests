@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.restResources.RestfulPlaylist;
 
-public class CreatePlaylist extends Playlists{
+public class CREATE_PLAYLIST extends Playlists{
     /*
         TEST : CREATE PLAYLIST
 

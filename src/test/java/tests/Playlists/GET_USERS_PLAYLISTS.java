@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import utils.restResources.RestfulPlaylist;
 import models.Playlist;
 
-public class GET_UsersPlaylist extends Playlists{
+public class GET_USERS_PLAYLISTS extends Playlists{
     /*
         TEST : GET PLAYLISTS
         - has playlists
