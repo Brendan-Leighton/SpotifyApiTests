@@ -33,15 +33,6 @@ public class Playlists {
         userId = userData.path("id");
     }
 
-    /**
-     * test limit?
-     */
-    @Test
-    public void getFeaturedPlaylists() {
-        List<Playlist> playlists = RestfulPlaylist.getAllPlaylists_featured();
-        Assert.assertTrue(playlists.size() > 0);
-    }
-
     //*************************
     //*************************
     //      DELETE TESTS
