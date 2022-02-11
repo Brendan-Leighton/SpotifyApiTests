@@ -2,6 +2,7 @@ package utils.restResources;
 // JAVA
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 // REST-ASSURED
 import io.restassured.response.Response;
 // JSON
@@ -111,9 +112,11 @@ public class RestfulPlaylist {
         JSONArray items = json.getJSONArray("items");
         // useful return object
         List<JSONObject> tracks = new ArrayList<>();
+        if (items.length() < 1) return tracks;
         // iterate TRACKS array and move to useful return object
         for (Object item : items) {
             JSONObject jsItem = (JSONObject) item;
+            if (JSONObject.NULL.equals(jsItem.get("track"))) continue;
             JSONObject track = (JSONObject) jsItem.get("track");
             tracks.add(track);
         }
