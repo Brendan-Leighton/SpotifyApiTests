@@ -36,9 +36,9 @@ public class CREATE_PLAYLIST extends Playlists{
                 Create_Playlist_14 - description as non-String data type
                 Create_Playlist_15 - description as blank ""
      */
-    @Test
-    public void createPlaylist() {
 
+    @Test
+    private static void createPlaylist() {
         // CREATE THE PLAYLIST
         // create request body
         Playlist playlist = new Playlist();
@@ -46,7 +46,7 @@ public class CREATE_PLAYLIST extends Playlists{
         playlist.setDescription("Auto generated");
         playlist.setPublic(false);
         // send request
-        Playlist res = RestfulPlaylist.createPlaylist(this.userId, playlist);
+        Playlist res = RestfulPlaylist.createPlaylist(Playlists.userId, playlist);
 
         // ASSERT
         Assert.assertEquals(res.getName(), playlist.getName());
