@@ -3,9 +3,10 @@ package tests.Playlists;
 import models.Playlist;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import tests.PlaylistsIndex;
 import utils.restResources.RestfulPlaylist;
 
-public class CHANGE_PLAYLIST_DETAILS extends Playlists {
+public class CHANGE_PLAYLIST_DETAILS extends PlaylistsIndex {
     @Test
     public void updatePlaylistDetails() {
         // CREATE PLAYLIST OBJECT
@@ -13,7 +14,7 @@ public class CHANGE_PLAYLIST_DETAILS extends Playlists {
         Playlist playlist = Playlist.generatePlaylist();
 
         // CREATE PLAYLIST VIA API
-        Playlist  originalPlaylist = RestfulPlaylist.createPlaylist(userId, playlist);
+        Playlist  originalPlaylist = RestfulPlaylist.createPlaylist(PlaylistsIndex.userId, playlist);
 
         // CREATE UPDATED PLAYLIST
         Playlist playlist1 = new Playlist();

@@ -8,10 +8,11 @@ import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 // MINE
+import tests.PlaylistsIndex;
 import utils.restResources.RestfulPlaylist;
 import models.Playlist;
 
-public class ADD_ITEMS_TO_PLAYLIST extends Playlists {
+public class ADD_ITEMS_TO_PLAYLIST extends PlaylistsIndex {
     /*
         TEST : ADD ITEMS TO A PLAYLIST
         1 track added?
@@ -25,7 +26,7 @@ public class ADD_ITEMS_TO_PLAYLIST extends Playlists {
     @Test
     public void addMultipleItemsToPlaylist() {
         // CREATE PLAYLIST
-        Playlist res = RestfulPlaylist.createPlaylist(this.userId, Playlist.generatePlaylist());
+        Playlist res = RestfulPlaylist.createPlaylist(PlaylistsIndex.userId, Playlist.generatePlaylist());
 
         // GET URIs TO ADD TO PLAYLIST
         // get featured playlists

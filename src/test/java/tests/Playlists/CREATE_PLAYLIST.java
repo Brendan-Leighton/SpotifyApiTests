@@ -3,9 +3,10 @@ package tests.Playlists;
 import models.Playlist;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import tests.PlaylistsIndex;
 import utils.restResources.RestfulPlaylist;
 
-public class CREATE_PLAYLIST extends Playlists{
+public class CREATE_PLAYLIST extends PlaylistsIndex {
     /*
         TEST : CREATE PLAYLIST
 
@@ -46,7 +47,7 @@ public class CREATE_PLAYLIST extends Playlists{
         playlist.setDescription("Auto generated");
         playlist.setPublic(false);
         // send request
-        Playlist res = RestfulPlaylist.createPlaylist(Playlists.userId, playlist);
+        Playlist res = RestfulPlaylist.createPlaylist(PlaylistsIndex.userId, playlist);
 
         // ASSERT
         Assert.assertEquals(res.getName(), playlist.getName());

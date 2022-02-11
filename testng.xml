@@ -15,7 +15,7 @@
             <class name="tests.Playlists.GET_PLAYLIST_ITEMS" />
             <class name="tests.Playlists.GET_USERS_PLAYLISTS" />
             <class name="tests.Playlists.REMOVE_PLAYLIST_ITEMS" />
-            <class name="tests.Playlists.UNFOLLOW_PLAYLIST" />
+            <class name="tests.Users.UNFOLLOW_PLAYLIST" />
             <class name="tests.Playlists.UPDATE_PLAYLIST_ITEMS" />
         </classes>
     </test>

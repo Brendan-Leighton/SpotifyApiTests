@@ -1,13 +1,14 @@
-package tests.Playlists;
+package tests.Users;
 
 import models.Playlist;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import tests.PlaylistsIndex;
 import utils.restResources.RestfulPlaylist;
 
 import java.util.List;
 
-public class UNFOLLOW_PLAYLIST extends Playlists {
+public class UNFOLLOW_PLAYLIST extends PlaylistsIndex {
     /**
      * DELETE a playlist by its ID.
      *
@@ -17,7 +18,7 @@ public class UNFOLLOW_PLAYLIST extends Playlists {
     public void deletePlaylistById() {
 
         // GET PLAYLISTS
-        List<Playlist> res_usersPlaylists_beforeDel = RestfulPlaylist.getAllPlaylists_forSingleUser(Playlists.userId);
+        List<Playlist> res_usersPlaylists_beforeDel = RestfulPlaylist.getAllPlaylists_forSingleUser(PlaylistsIndex.userId);
 
         // if there are no playlists, CREATE a PLAYLIST
         if (res_usersPlaylists_beforeDel.size() == 0) {
@@ -29,7 +30,7 @@ public class UNFOLLOW_PLAYLIST extends Playlists {
             // send request
             RestfulPlaylist.createPlaylist(userId, playlist);
             // get playlists
-            res_usersPlaylists_beforeDel = RestfulPlaylist.getAllPlaylists_forSingleUser(Playlists.userId);
+            res_usersPlaylists_beforeDel = RestfulPlaylist.getAllPlaylists_forSingleUser(PlaylistsIndex.userId);
         }
 
         // GET ID OF A PLAYLIST
@@ -39,7 +40,7 @@ public class UNFOLLOW_PLAYLIST extends Playlists {
         RestfulPlaylist.deletePlaylist_byId(playlistId);
 
         // GET PLAYLISTS
-        List<Playlist> res_usersPlaylists_afterDel = RestfulPlaylist.getAllPlaylists_forSingleUser(Playlists.userId);
+        List<Playlist> res_usersPlaylists_afterDel = RestfulPlaylist.getAllPlaylists_forSingleUser(PlaylistsIndex.userId);
 
         // ASSERT
         // expect 1 less playlist after delete

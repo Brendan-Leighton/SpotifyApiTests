@@ -4,6 +4,7 @@ import models.Playlist;
 import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import tests.PlaylistsIndex;
 import utils.restResources.RestfulPlaylist;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.List;
  *    - not empty playlist
  *    - empty playlist
  */
-public class GET_PLAYLIST_ITEMS extends Playlists{
+public class GET_PLAYLIST_ITEMS extends PlaylistsIndex {
 
     /**
      * GET items from a non-empty playlist
@@ -30,7 +31,7 @@ public class GET_PLAYLIST_ITEMS extends Playlists{
         playlist.setDescription("Made to be gotten");
         playlist.setPublic(false);
         // send request
-        Playlist res = RestfulPlaylist.createPlaylist(userId, playlist);
+        Playlist res = RestfulPlaylist.createPlaylist(PlaylistsIndex.userId, playlist);
         // get id
         String playlistId = res.getId();
 

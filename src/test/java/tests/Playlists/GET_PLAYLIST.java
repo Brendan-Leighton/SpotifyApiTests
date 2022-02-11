@@ -4,9 +4,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 // MINE
 import models.Playlist;
+import tests.PlaylistsIndex;
 import utils.restResources.RestfulPlaylist;
 
-public class GET_PLAYLIST extends Playlists{
+public class GET_PLAYLIST extends PlaylistsIndex {
     /**
      * GET one playlist by its ID
      */

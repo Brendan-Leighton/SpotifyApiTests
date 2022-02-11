@@ -1,4 +1,4 @@
-package tests.Playlists;
+package tests;
 // TEST-NG
 import org.testng.annotations.BeforeTest;
 // REST-ASSURED
@@ -11,9 +11,9 @@ import utils.restResources.RestResource;
 /**
  * Tests pertaining to the "playlist" endpoint for Spotify's API
  */
-public class Playlists {
+public class PlaylistsIndex {
 
-    static String userId;
+    public static String userId;
 
     @BeforeTest
     public static void setup() {
