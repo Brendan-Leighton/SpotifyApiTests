@@ -4,10 +4,11 @@ package utils;
  * Used with a URI, preceding the URI concatenated together in a String.
  *
  * <ul>
- *      <li>TOKEN = "token";</li>
- *      <li>ME = "me";</li>
- *      <li>PLAYLISTS = "playlists";</li>
- *      <li>USERS = "users/";</li>
+ *      <li>TOKEN = "token"</li>
+ *      <li>ME = "me"</li>
+ *      <li>PLAYLISTS = "playlists"</li>
+ *      <li>USERS = "users/"</li>
+ *      <li>TRACKS = "tracks"</li>
  * </ul>
  */
 public class Endpoints {
