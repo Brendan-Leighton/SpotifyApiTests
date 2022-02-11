@@ -17,7 +17,7 @@ public class UNFOLLOW_PLAYLIST extends Playlists {
     public void deletePlaylistById() {
 
         // GET PLAYLISTS
-        List<Playlist> res_usersPlaylists_beforeDel = RestfulPlaylist.getAllPlaylists_forSingleUser(this.userId);
+        List<Playlist> res_usersPlaylists_beforeDel = RestfulPlaylist.getAllPlaylists_forSingleUser(Playlists.userId);
 
         // if there are no playlists, CREATE a PLAYLIST
         if (res_usersPlaylists_beforeDel.size() == 0) {
@@ -29,7 +29,7 @@ public class UNFOLLOW_PLAYLIST extends Playlists {
             // send request
             RestfulPlaylist.createPlaylist(userId, playlist);
             // get playlists
-            res_usersPlaylists_beforeDel = RestfulPlaylist.getAllPlaylists_forSingleUser(this.userId);
+            res_usersPlaylists_beforeDel = RestfulPlaylist.getAllPlaylists_forSingleUser(Playlists.userId);
         }
 
         // GET ID OF A PLAYLIST
@@ -39,7 +39,7 @@ public class UNFOLLOW_PLAYLIST extends Playlists {
         RestfulPlaylist.deletePlaylist_byId(playlistId);
 
         // GET PLAYLISTS
-        List<Playlist> res_usersPlaylists_afterDel = RestfulPlaylist.getAllPlaylists_forSingleUser(this.userId);
+        List<Playlist> res_usersPlaylists_afterDel = RestfulPlaylist.getAllPlaylists_forSingleUser(Playlists.userId);
 
         // ASSERT
         // expect 1 less playlist after delete
