@@ -1,2 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite"><test verbose="2" preserve-order="true" name="C:/Users/br3nd/IdeaProjects/GenSpark/SpotifyApiTests"><classes><class name="tests.Playlist"><methods><include name="createPlaylist"/></methods></class></classes></test></suite>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/br3nd/IdeaProjects/GenSpark/SpotifyApiTests">
+        <classes>
+            <class name="tests.Playlists.ADD_CUSTOM_PLAYLIST_COVER_IMAGE" />
+            <class name="tests.Playlists.ADD_ITEMS_TO_PLAYLIST" />
+            <class name="tests.Playlists.CHANGE_PLAYLIST_DETAILS" />
+            <class name="tests.Playlists.CREATE_PLAYLIST" />
+            <class name="tests.Playlists.GET_CATEGORYS_PLAYLISTS" />
+            <class name="tests.Playlists.GET_CURRENT_USERS_PLAYLISTS" />
+            <class name="tests.Playlists.GET_FEATURED_PLAYLISTS" />
+            <class name="tests.Playlists.GET_PLAYLIST" />
+            <class name="tests.Playlists.GET_PLAYLIST_COVER_IMAGE" />
+            <class name="tests.Playlists.GET_PLAYLIST_ITEMS" />
+            <class name="tests.Playlists.GET_USERS_PLAYLISTS" />
+            <class name="tests.Playlists.REMOVE_PLAYLIST_ITEMS" />
+            <class name="tests.Playlists.UNFOLLOW_PLAYLIST" />
+            <class name="tests.Playlists.UPDATE_PLAYLIST_ITEMS" />
+        </classes>
+    </test>
+</suite>
