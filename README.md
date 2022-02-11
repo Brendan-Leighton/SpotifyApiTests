@@ -25,6 +25,7 @@ This project contains automated tests for testing Spotify's RESTful API. This pr
 
 * [Test Plan](https://docs.google.com/document/d/17aJNVkieni_BJk-uW_6i2fnO8gNf5Ps9ndP8b39vsjo/edit?usp=sharing)
 * [Test Cases](https://docs.google.com/spreadsheets/d/184b2D89UtqwPTaqWBCn-1ESK9cM9GL_CfqQzDB9m8ko/edit?usp=sharing)
+* [Test Data](https://docs.google.com/spreadsheets/d/1G4UYIPpMv8DaFD0HfCGsbXypNPBOgiddZNLRb6WKk0I/edit?usp=sharing)
 
 <!-- TECH USED -->
 # Technologies Used
