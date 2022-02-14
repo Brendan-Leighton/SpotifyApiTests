@@ -1,8 +1,9 @@
 package tests.Playlists;
-
-import models.Playlist;
+// TEST-NG
 import org.testng.Assert;
 import org.testng.annotations.Test;
+// CUSTOM
+import models.Playlist;
 import tests.PlaylistsIndex;
 import utils.restResources.RestfulPlaylist;
 
@@ -39,7 +40,7 @@ public class CREATE_PLAYLIST extends PlaylistsIndex {
      */
 
     @Test
-    private static void createPlaylist() {
+    private static void Create_Playlist_01() {
         // CREATE THE PLAYLIST
         // create request body
         Playlist playlist = new Playlist();
