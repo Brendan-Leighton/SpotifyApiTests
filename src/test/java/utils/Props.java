@@ -1,5 +1,6 @@
 package utils;
 // JAVA
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -16,12 +17,14 @@ public class Props {
 
     /**
      * Gets, and possibly initially loads, properties from ".properties" files
+     *
      * @return an object containing getters for all properties.
      */
     public static Properties init() {
 
         if (properties == null) {
 
+            // GET HIDDEN API
             properties = new Properties();
             try {
                 properties.load(new FileInputStream("src/test/resources/hidden/API_config.properties"));
@@ -29,20 +32,31 @@ public class Props {
                 e.printStackTrace();
             }
 
-            Properties properties2 = new Properties();
+            // GET HIDDEN TestData
+            Properties testData = new Properties();
             try {
-                properties2.load(new FileInputStream("src/test/resources/URI.properties"));
+                testData.load(new FileInputStream("src/test/resources/hidden/TestData.properties"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            properties.putAll(properties2);
+            // GET NON-HIDDEN URI
+            Properties uri = new Properties();
+            try {
+                uri.load(new FileInputStream("src/test/resources/URI.properties"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            properties.putAll(uri);
+            properties.putAll(testData);
         }
         return properties;
     }
 
     /**
      * hidden property
+     *
      * @return essentially a username needed to access Spotify's API
      */
     public static String getClientId() {
@@ -51,6 +65,7 @@ public class Props {
 
     /**
      * hidden property
+     *
      * @return essentially a password needed to access Spotify's API
      */
     public static String getClientSecret() {
@@ -59,6 +74,7 @@ public class Props {
 
     /**
      * hidden property
+     *
      * @return a token that lets us get a new access_token when our old one expires
      */
     public static String getRefreshToken() {
@@ -67,6 +83,7 @@ public class Props {
 
     /**
      * hidden property
+     *
      * @return Not sure, could be what type of token we're looking to get?
      */
     public static String getGrantType() {
@@ -74,7 +91,6 @@ public class Props {
     }
 
     /**
-     *
      * @return the beginning of the url you'll want to hit. You'll need to append an {@link Endpoints}
      */
     public static String getBaseURI_Accounts() {
@@ -82,10 +98,13 @@ public class Props {
     }
 
     /**
-     *
      * @return the beginning of the url you'll want to hit. You'll need to append an {@link Endpoints}
      */
     public static String getBaseURI_API() {
         return init().getProperty("baseURI_api");
+    }
+
+    public static String getTestDataPath() {
+        return init().getProperty("system-path");
     }
 }
