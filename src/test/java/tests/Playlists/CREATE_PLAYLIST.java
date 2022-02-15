@@ -1,11 +1,14 @@
 package tests.Playlists;
 // TEST-NG
+import models.TestData.Endpoint;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 // CUSTOM
 import models.Playlist;
 import tests.PlaylistsIndex;
 import utils.restResources.RestfulPlaylist;
+
+import java.util.Map;
 
 public class CREATE_PLAYLIST extends PlaylistsIndex {
     /*
@@ -52,5 +55,15 @@ public class CREATE_PLAYLIST extends PlaylistsIndex {
 
         // ASSERT
         Assert.assertEquals(res.getName(), playlist.getName());
+    }
+
+    @Test
+    public static void testing() {
+//        Map<String, Map<String, String>> data = PlaylistsIndex.getExcel().getMappedSheet();
+
+//        for (int i = 1; i < 15; i++){
+//            System.out.println("\nIteration: " + i + "\n" + PlaylistsIndex.getExcel().getFunctionData(i) + "\n");
+//        }
+
     }
 }
